@@ -36,7 +36,7 @@
         </div>
      <aside>
 
-        <form class="filter" action ="/event/category" method="POST">
+        <form class="filter" action ="/event/filter" method="GET">
             <select name="eventcategory" > 
                 <option value="">SELECT</option>  
                 <%eve.forEach((category)=>{%>
@@ -46,7 +46,7 @@
             </select><br>
             <button class="submit" type="submit">SUBMIT</button>
         </form>
-        <form  class="filter" action ="/event/location" method="POST">
+        <form  class="filter" action ="/event/filter" method="GET">
             <select name="location" >   
                 <option value="">SELECT</option>  
                 <%even.forEach((location)=>{%>
@@ -55,7 +55,7 @@
             </select><br>
             <button class="submit" type="submit">SUBMIT</button>
         </form>
-        <form class="filter" action ="/event/date" method="POST">
+        <form class="filter" action ="/event/filter" method="GET">
             <input type="date" name="startdate" id="">
             <input type="date" name="endDate" id="">
         
