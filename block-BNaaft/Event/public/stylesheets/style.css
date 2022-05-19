@@ -133,3 +133,8 @@ select{
   color: orangered;
   
 }
+h6{
+  margin-bottom: 4px;
+  text-align: center;
+  font-size: 14px;
+}

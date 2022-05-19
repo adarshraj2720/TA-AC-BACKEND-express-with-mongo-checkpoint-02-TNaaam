@@ -7,6 +7,8 @@ var Event = require('../modals/event');
 const { events, find } = require('../modals/remark');
 var Remark = require('../modals/remark')
 
+var auth = require('../middlewares/auth')
+
 
 // var date = moment().format('L')
 
@@ -17,6 +19,7 @@ router.get('/new', function (req, res, next) {
 });
 
 
+//Event Create
 
 router.post('/', (req, res, next) => {
   //req.body.startdate = moment(req.body.startdate).format()
@@ -29,21 +32,15 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.get('/', (req, res, next) => {
+//All Event 
+
+router.get('/', auth.allfilter, (req, res, next) => {
   Event.find({}, (err, events) => {
     if (err) return next(err);
-    Event.distinct("eventcategory", (err, eve) => {
-      console.log(eve);
-      Event.distinct('location', (err, even) => {
-        Event.distinct('startdate', (err, date) => {
-          console.log(date)
-          res.render('events', { events, eve, even, date });
-        })
 
-      })
-
-    })
+    res.render('events', { events, });
   })
+
 })
 
 
@@ -51,6 +48,7 @@ router.get('/', (req, res, next) => {
 
 
 
+// Edit Event
 
 
 router.get('/:id/edit', (req, res, next) => {
@@ -68,78 +66,62 @@ router.get('/:id/edit', (req, res, next) => {
 
 
 
+//Filter
 
+router.get('/filter', auth.allfilter, (req, res, next) => {
 
-router.get('/filter',(req,res,next)=>{
-  
   let category = req.query.eventcategory
   let location = req.query.location
   let startdate = req.query.startdate;
   let endDate = req.query.endDate
-    console.log(category,"category")
-  if(category){
-    Event.find({eventcategory:category}, (err, events) => {
+  console.log(category, "category")
+  if (category) {
+    Event.find({ eventcategory: category }, (err, events) => {
       console.log(events);
-      Event.distinct('eventcategory', (err, eve) => {
-        console.log(eve);
-        Event.distinct('location', (err, even) => {
-          console.log(even);
-           Event.distinct('startdate', (err, date) => {
-            res.render('events', { events, eve, even, date})
-           })
-  
-        })
-  
-      })
-  
-    })
-  }else if(location){
-    Event.find({location:location}, (err, events) => {
-          console.log(events);
-          Event.distinct('eventcategory', (err, eve) => {
-            console.log(eve);
-            Event.distinct('location', (err, even) => {
-              console.log(even);
-             Event.distinct('startdate', (err, date) => {
-               res.render('events', { events, eve, even, date })
-             })
-      
-           })
-      
-         })
-      
-        })
-  }else if( startdate && endDate){
-      Event.find({ 'startdate': { $gte: startdate, $lt: endDate } }, (err, events) => {
-    console.log(events);
-    Event.distinct('eventcategory', (err, eve) => {
-      console.log(eve);
-      Event.distinct('location', (err, even) => {
-        console.log(even);
 
-        res.render('events', { events, eve, even })
-      })
+      res.render('events', { events })
+
 
     })
-  })
+  } else if (location) {
+    Event.find({ location }, (err, events) => {
+      console.log(events);
+
+      res.render('events', { events })
+
+
+    })
+  } else if (startdate && endDate) {
+    Event.find({ 'startdate': { $gte: startdate, $lt: endDate } }, (err, events) => {
+      console.log(events);
+
+
+      res.render('events', { events })
+    })
+
+
   }
 
 })
+
+//Find By id
+
+
 router.get('/:id', (req, res, next) => {
   var id = req.params.id
-  Event.findById(id).populate('remarksID').exec((err,event) => {
+  Event.findById(id).populate('remarksID').exec((err, event) => {
     console.log(err, event)
     var startdate = moment(event.startdate).format('DD/MM/YYYY').slice(0, 10);
     var enddate = moment(event.enddate).format('DD/MM/YYYY').slice(0, 10);
-   if (err) return next(err)
-    res.render('eventdetails', { event,startdate,enddate })
+    if (err) return next(err)
+    res.render('eventdetails', { event, startdate, enddate })
   })
 })
 
 
 
 
-
+// Update The Event
 router.post('/:id', (req, res, next) => {
   var id = req.params.id;
   Event.findByIdAndUpdate(id, req.body, (err, update) => {
@@ -148,6 +130,8 @@ router.post('/:id', (req, res, next) => {
   })
 })
 
+//Delete the Event
+
 router.get('/:id/delete', (req, res) => {
   var id = req.params.id;
   Event.findByIdAndDelete(id, (err, update) => {
@@ -155,6 +139,8 @@ router.get('/:id/delete', (req, res) => {
     res.redirect('/event/');
   })
 })
+
+// Add Remark
 
 router.post('/:id/remark', (req, res, next) => {
   var id = req.params.id;
@@ -171,7 +157,7 @@ router.post('/:id/remark', (req, res, next) => {
 })
 
 
-
+//like
 
 router.get('/:id/like', (req, res, next) => {
   var id = req.params.id;
@@ -188,6 +174,8 @@ router.get('/:id/like', (req, res, next) => {
 
   })
 })
+
+//Dislike
 
 router.get("/:id/dislike", (req, res, next) => {
   var id = req.params.id;
