@@ -16,7 +16,7 @@ var app = express();
 
 //db connect
 
-mongoose.connect('mongodb://127.0.0.1:27017/event',(err)=>{
+mongoose.connect('mongodb+srv://adarshraj2720:Adarshraj6059@cluster0.206wb.mongodb.net/?retryWrites=true&w=majority',(err)=>{
   console.log(err ? err : "Connected")
 })
 
