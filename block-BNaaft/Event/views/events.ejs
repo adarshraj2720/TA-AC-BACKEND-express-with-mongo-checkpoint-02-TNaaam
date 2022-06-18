@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+     <title>Events</title>
+</head>
+<body>
+    <header>
+        <a href="/">
+          <button>HOME</button>
+        </a>
+        <h3>Event Management</h3>
+        <a href="/event/new">
+          <button>Add Event</button>
+        </a>
+      </header>
+   
+      <main>
+        <h2>Events</h2>
+        <section class="events">
+         <div>
+
+     
+            <%events.forEach((event)=>{%>
+                <p class="event-title"> <span class="events-title">Title:</span> <%=event.title%></p>
+                <a href="/event/<%=event._id%>">
+                    <button>MORE</button>
+                </a>
+            <%})%>
+         
+        </div>
+     <aside>
+
+        <form class="filter" action ="/event/filter" method="GET">
+            <h6>Filter By Event</h6>
+            <select name="eventcategory" > 
+                <option value="">SELECT</option>  
+                <%eventcategory.forEach((category)=>{%>
+    
+                    <option value="<%=category%>"><%=category%></option>
+                <%})%>
+            </select><br>
+            <button class="submit" type="submit">SUBMIT</button>
+        </form>
+        <form  class="filter" action ="/event/filter" method="GET">
+            <h6>Filter By Location</h6>
+            <select name="location" >   
+                <option value="">SELECT</option>  
+                <%location.forEach((location)=>{%>
+                    <option value="<%=location%>"><%=location%></option>
+                <%})%>
+            </select><br>
+            <button class="submit" type="submit">SUBMIT</button>
+        </form>
+        <form class="filter" action ="/event/filter" method="GET">
+            <h6>Filter By Date</h6>
+            <input type="date" name="startdate" id="">
+            <input type="date" name="endDate" id="">
+        
+            <button class="submit" type="submit">SUBMIT</button>
+        </form>
+        
+     </aside>
+       
+    </section>
+    
+      </main>
+
+   </body>
+</html>
+
+
+
+

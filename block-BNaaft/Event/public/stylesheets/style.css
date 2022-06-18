@@ -1,0 +1,140 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #63cffa;
+  font-family: 'Poppins', sans-serif;
+}
+header{
+  /* position: relative; */
+padding:30px 20px;
+  background-color: aqua;
+  /* height: 100px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+button{
+  /* position: absolute;
+  top: 50%; */
+  /* margin: 50%  ; */
+  padding: 10px 16px;
+  background-color: rgb(255, 155, 155);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+h1{
+  margin-top: 15%;
+  text-align: center;
+}
+form{
+  margin: 0 auto;
+  padding: 20px ;
+  width: 600px;
+  background-color: white;
+  border-radius: 4px;
+  
+}
+input{
+  font-size: 1rem;
+  color: brown;
+  padding-left: 10px;
+  outline: none;
+  border: 1px dashed gray;
+  border-radius: 2px;
+  margin-bottom: 20px;
+  width: 98%;
+  height: 40px;
+}
+
+h2{
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 50px;
+  
+}
+h3{
+  font-size: 1.5rem;
+  font-style: italic;
+}
+.submit{
+  margin-top: 10px;
+  width: 100%;
+}
+.details{
+  padding: 10px 10px;
+  width: 620px;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+p{
+  /* color: #63cffa; */
+  padding: 20px 0;
+  font-size: 1.5rem;
+  border-bottom: 1px dashed gray;
+}
+.title{
+  color: orange;
+  font-size: 1.2rem;
+}
+.remarks{
+  margin: 20px auto;
+}
+.all-btn{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.edit-btn, .delete-btn ,.like-btn , .dislike-btn{
+  color: white;
+}
+.edit-btn{
+  background-color: olive;
+}
+.delete-btn{
+  background-color: red;
+}
+.like-btn {
+  background-color: blue;
+}
+ .dislike-btn{
+   background-color: rgb(125, 125, 230);
+ }
+.events{
+  padding: 0 10%;
+  display: flex;
+  justify-content: space-between;
+}
+.filter{
+  /* background-color: transparent */
+  width: 300px;
+}
+select{
+  height: 40px;
+  width: 100%;
+}
+.event-title{
+  border: 0;
+}
+.events-title{
+  font-size: 2rem;
+  color: orangered;
+  
+}
+h6{
+  margin-bottom: 4px;
+  text-align: center;
+  font-size: 14px;
+}
