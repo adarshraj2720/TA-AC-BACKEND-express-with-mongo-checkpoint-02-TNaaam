@@ -78,7 +78,6 @@ router.get('/filter', auth.allfilter, (req, res, next) => {
   if (category) {
     Event.find({ eventcategory: category }, (err, events) => {
       console.log(events);
-
       res.render('events', { events })
 
 
